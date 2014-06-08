@@ -3,14 +3,14 @@ require_relative 'bounding_box'
 require 'pry'
 
 class BoundingArea
-  attr_reader :areas, :top, :bottom, :left, :right
-  def initialize(areas)
-    @areas = areas
-    @areas.each do |area|
-      @left = area.left
-      @right = area.right
-      @top = area.top
-      @bottom = area.bottom
+  attr_reader :top, :bottom, :left, :right
+  def initialize(rects)
+    @rects = rects
+    @rects.each do |point|
+      @left = point.left
+      @right = point.right
+      @top = point.top
+      @bottom = point.bottom
     end
   end
 
@@ -18,7 +18,7 @@ class BoundingArea
 
     if x == 0 && y == 0
       false
-    elsif x >= @left && x <= @right && y <= @bottom && y <= @top
+    elsif (x >= @left) && (x <= @right) && (y >= @bottom) && (y <= @top)
       true
     else
       false
